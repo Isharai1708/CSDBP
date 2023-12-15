@@ -36,10 +36,11 @@ jobs:
         projectKey: "Isharai1708_CSDBP" # Replace with your SonarCloud project key
         organization: "isharai1708"      # Replace with your SonarCloud organization key
 
-    - name: Run OWASP Dependency Check
-      uses: DependencyCheck/DependencyCheck_Action@v6
+    - name: Snyk Security Scan
+      uses: snyk/actions/dotnet@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        project: 'BP Code' # Replace with your project name
-        scanPath: './'             # Directory to scan, adjust if needed
-        format: 'HTML'             # Report format
-        failBuild: true            # Whether to fail the build on CVSS score threshold violation
+        command: test
+        # Optional: Path to the project or solution file, if it's not in the root directory
+        # path: 'Path/To/Your/ProjectOrSolutionFile'
