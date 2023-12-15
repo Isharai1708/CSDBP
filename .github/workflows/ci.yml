@@ -33,14 +33,17 @@ jobs:
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set this in your repo secrets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # Add additional properties here if needed
+        # with:
+        #   projectBaseDir: 'Path/To/Your/ProjectOrSolutionFile'
 
       - name: Snyk Security Scan
         uses: snyk/actions/dotnet@master
+        with:
+          command: monitor
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
-          # If you have a specific path for your project file you can uncomment the next line and specify the path
+          # Optional: Path to the project or solution file, if it's not in the root directory
           # path: 'Path/To/Your/ProjectOrSolutionFile'
