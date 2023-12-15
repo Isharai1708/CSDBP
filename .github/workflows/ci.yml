@@ -13,26 +13,33 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '8.0.100' # Ensure this version matches your project's target version
+        dotnet-version: '8.0.100' # Specify your .NET version here
 
-    - name: Install dependencies
+    - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build --no-restore
 
-    - name: Test
+    - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set this in your repo secrets
       with:
-        projectKey: "Isharai1708_CSDBP" 
-        organization: "isharai1708" 
-        
+        projectKey: "Isharai1708_CSDBP" # Replace with your SonarCloud project key
+        organization: "isharai1708"      # Replace with your SonarCloud organization key
+
+    - name: Run OWASP Dependency Check
+      uses: DependencyCheck/DependencyCheck_Action@v6
+      with:
+        project: 'BP Code' # Replace with your project name
+        scanPath: './'             # Directory to scan, adjust if needed
+        format: 'HTML'             # Report format
+        failBuild: true            # Whether to fail the build on CVSS score threshold violation
