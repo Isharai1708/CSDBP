@@ -39,11 +39,4 @@ jobs:
         # with:
         #   projectBaseDir: 'Path/To/Your/ProjectOrSolutionFile'
 
-      - name: Snyk Security Scan
-        uses: snyk/actions/dotnet@master
-        with:
-          command: monitor
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          # Optional: Path to the project or solution file, if it's not in the root directory
-          # path: 'Path/To/Your/ProjectOrSolutionFile'
+    
