@@ -11,36 +11,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '8.0.100' # Specify your .NET version here
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.100' # Specify your .NET version here
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build
-      run: dotnet build --no-restore
+      - name: Build
+        run: dotnet build --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
 
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set this in your repo secrets
-      with:
-        projectKey: "Isharai1708_CSDBP" # Replace with your SonarCloud project key
-        organization: "isharai1708"      # Replace with your SonarCloud organization key
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provided by GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Set this in your repo secrets
+        with:
+          # Optional: Path to the project or solution file, if it's not in the root directory
+          # projectBaseDir: 'Path/To/Your/ProjectOrSolutionFile'
 
-    - name: Snyk Security Scan
-      uses: snyk/actions/dotnet@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        command: test
-        # Optional: Path to the project or solution file, if it's not in the root directory
-        # path: 'Path/To/Your/ProjectOrSolutionFile'
+      - name: Snyk Security Scan
+        uses: snyk/actions/dotnet@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
