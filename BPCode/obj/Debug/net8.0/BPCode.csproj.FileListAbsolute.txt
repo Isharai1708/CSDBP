@@ -1,0 +1,12 @@
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.AssemblyInfoInputs.cache
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.AssemblyInfo.cs
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.csproj.CoreCompileInputs.cache
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.sourcelink.json
+C:\Users\ishar\CSDBP\BPCode\bin\Debug\net8.0\BPCode.deps.json
+C:\Users\ishar\CSDBP\BPCode\bin\Debug\net8.0\BPCode.dll
+C:\Users\ishar\CSDBP\BPCode\bin\Debug\net8.0\BPCode.pdb
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.dll
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\refint\BPCode.dll
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\BPCode.pdb
+C:\Users\ishar\CSDBP\BPCode\obj\Debug\net8.0\ref\BPCode.dll
