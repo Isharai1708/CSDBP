@@ -1,0 +1,8 @@
+ version: 2
+updates:
+  - package-ecosystem: "nuget" # Set to "nuget" for .NET projects
+    directory: "/" # Location of package manifests (e.g., .csproj or .sln files)
+    schedule:
+      interval: "weekly" # How often to check for updates
+    open-pull-requests-limit: 10 # Maximum number of open pull requests
+
